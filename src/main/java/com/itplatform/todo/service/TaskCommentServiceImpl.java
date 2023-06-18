@@ -20,9 +20,6 @@ public class TaskCommentServiceImpl implements TaskCommentService {
     @Override
     @Transactional
     public Task save(int taskId, Comment comment) {
-        // Make sure id is not set by user
-        comment.setId(0);
-
         Task task = taskRepository.getOne(taskId);
 
         if (task == null) {
