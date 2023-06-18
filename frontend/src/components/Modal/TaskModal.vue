@@ -202,7 +202,7 @@ export default {
       }
       const { year, month, day } = this.date;
       this.newTask.dueDate = new Date(year, month - 1, day);
-      this.newTask.memberId =this.memberId
+      this.newTask.memberId =this.$store.state.memberId
       if (this.edit) {
         this.updateTask(this.newTask);
       } else {
