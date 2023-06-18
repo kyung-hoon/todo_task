@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Member")
+@Table(name = "member")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Member {
 
@@ -26,9 +26,11 @@ public class Member {
     private String password;
 
 
-    @NotBlank
+    @Enumerated(EnumType.STRING)
     @Column(name = "role_type")
-    private String role;
+    private MemberRole roleType =MemberRole.NORMAL;
+
+
 
 
     public int getId() {
@@ -43,7 +45,25 @@ public class Member {
         return password;
     }
 
-    public String getRole() {
-        return role;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public MemberRole getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(MemberRole role) {
+        this.roleType = role;
     }
 }
