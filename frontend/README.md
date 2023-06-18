@@ -4,6 +4,7 @@
 
 ```
 npm install terser-webpack-plugin --save-dev --force
+npm install --save vuex-persistedstate
 yarn add -D terser-webpack-plugin
 yarn install
 ```
