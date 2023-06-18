@@ -3,8 +3,8 @@
 <small>A simple todo list application that keeps track of your time.</small>
 ## How To
 - To access the application go to: http://localhost:8080/.
-- For API interactions use: http://localhost:8080/api/tasks and http://localhost:8080/api/messages.
-- A quick API tour is available in [src/rest.http](src/rest.http).
+- For API interactions use: http://localhost:8080/api/tasks , http://localhost:8080/api/member, http://localhost:8080/api/login and http://localhost:8080/api/comments .
+- A quick API Document is available in http://localhost:8080/swagger-ui/index.html#/
 - Database is automatically initialized and seeded. For production this needs to be disabled.
 - Gradle should build and pack the frontend assets in `static` folder.
 - It is possible that you will have to manually initialize the database. To do this use [init.sql](src/main/resources/init.sql) inside `main/resources`.
