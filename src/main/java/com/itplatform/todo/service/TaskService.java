@@ -4,7 +4,7 @@ import com.itplatform.todo.domain.Task;
 import java.util.List;
 
 public interface TaskService {
-
+    List<Task> findAllByMemberId(String memberId);
     List<Task> findAll();
 
     Task findById(int id);

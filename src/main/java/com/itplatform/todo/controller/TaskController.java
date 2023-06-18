@@ -25,7 +25,12 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("")
+    @GetMapping("/my/{memberId}")
+    public List<Task> findByMemberId(@PathVariable String memberId) {
+        return taskService.findAllByMemberId(memberId);
+    }
+
+    @GetMapping
     public List<Task> findAll() {
         return taskService.findAll();
     }

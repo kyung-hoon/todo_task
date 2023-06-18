@@ -21,6 +21,11 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
+    public List<Task> findAllByMemberId(String memberId) {
+        return taskRepository.findAllByMemberId(memberId);
+    }
+
+    @Override
     @Transactional
     public List<Task> findAll() {
         return taskRepository.findAll();

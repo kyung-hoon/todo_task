@@ -20,11 +20,11 @@ public class Task {
     private int id;
 
     @NotBlank
-    @Column(name = "title")
+    @Column(name = "title",columnDefinition = "VARCHAR(255) CHARACTER SET UTF8")
     private String title;
 
     @NotBlank
-    @Column(name = "description")
+    @Column(name = "description",columnDefinition = "VARCHAR(255) CHARACTER SET UTF8")
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,6 +37,9 @@ public class Task {
     @NotNull
     @Column(name = "status")
     private Boolean status;
+
+    @Column(name= "member_id")
+    private String memberId;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "task_id")
@@ -103,4 +106,13 @@ public class Task {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
 }
