@@ -10,13 +10,6 @@
         <label for="password">비밀번호:</label>
         <input type="password" id="password" v-model="password" class="form-control">
       </div>
-      <div class="form-group">
-        <label for="role">역할:</label>
-        <select id="role" v-model="role" class="form-control">
-          <option value="admin">admin</option>
-          <option value="user">normal</option>
-        </select>
-      </div>
       <button type="submit" class="btn-register">회원가입</button>
     </form>
     <p>이미 계정이 있으신가요? <router-link to="/">로그인</router-link></p>
@@ -32,7 +25,7 @@ export default {
     return {
       username: '',
       password: '',
-      role: 'normal',
+      role: 'NORMAL',
       errorMessage: '',
       isRegistered: false
     };

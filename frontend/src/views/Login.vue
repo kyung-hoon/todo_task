@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      username: '',
+      memberId: '',
       password: '',
       errorMessage: '',
       isLoggedIn: false
@@ -31,24 +31,46 @@ export default {
   },
   methods: {
     login() {
-      const params = new URLSearchParams();
-      params.append('id', this.username);
-      params.append('password', this.password);
+      const params = {
+        memberId: this.username,
+        password: this.password,
+      };
+      if(params.memberId ==''){
+        alert("아이디를 입력하여 주십시오")
+        return;
+      }if(params.password ==''){
+        alert("비밀번호를 입력하여 주십시오")
+        return;
+      }
+      fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+      })
+          .then(response => {
 
-      fetch(`http://localhost:8080/login?${params.toString()}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              // 로그인 성공 시 Task 페이지로 이동
-              this.$router.push({ name: 'Task' });
-            } else {
-              alert('로그인 실패');
-            }
-          })
-          .catch(error => {
-            console.error('로그인 요청 에러:', error);
-            alert('로그인 요청 중 에러가 발생했습니다.');
-          });
+                if (response.ok) {
+                  return response.json()
+                } else if (response.status ===400){
+                  alert('아이디를 확인해 주세요');
+                  return ;
+                } else{
+                  alert('비밀번호가 잘못되었습니다.');
+                  return ;
+                }
+              }
+          ).then(data =>{
+            const memberId = data.memberId;
+           this.$store.commit("SET_MEMBER_ID", memberId);
+           if(data.roleType === 'ADMIN'){
+             this.$store.commit("UPDATE_IS_ADMIN",true)
+           }else{
+             this.$store.commit("UPDATE_IS_ADMIN",false)
+           }
+           this.$router.push({ path: 'tasks', query: { memberId } });
+           })
     }
   }
 };
