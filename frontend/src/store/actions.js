@@ -1,4 +1,5 @@
 import { parse } from "date-fns";
+import members from "@/views/members";
 
 export default {
   sortTasks({ state }) {
@@ -6,6 +7,19 @@ export default {
   },
   async getTasks({ commit, dispatch }) {
     const response = await fetch("/api/tasks");
+    const tasks = await response.json();
+    if (!response.ok) {
+      console.error(response);
+      return;
+    }
+
+    tasks.forEach(task => (task.dueDate = parse(task.dueDate)));
+
+    commit("SAVE_TASKS", tasks);
+    dispatch("sortTasks");
+  },
+  async getMyTasks({commit, dispatch }, memberId) {
+    const response = await fetch(`/api/tasks/my/${memberId}`);
     const tasks = await response.json();
     if (!response.ok) {
       console.error(response);
@@ -33,6 +47,7 @@ export default {
     dispatch("sortTasks");
   },
   async updateTask({ commit, dispatch }, task) {
+
     const response = await fetch(`/api/tasks`, {
       method: "put",
       body: JSON.stringify(task),
@@ -42,7 +57,6 @@ export default {
       console.error(response);
       return;
     }
-
     const taskNew = await response.json();
     commit("UPDATE_TASK", taskNew);
     dispatch("sortTasks");
@@ -107,5 +121,29 @@ export default {
     }
 
     dispatch("getTasks");
-  }
+  },
+  async getMembers({ commit }) {
+    const response = await fetch("/api/member");
+    const members = await response.json();
+    if (!response.ok) {
+      console.error(response);
+      return;
+    }
+
+    commit("SAVE_MEMBERS", members);
+  },
+  async updateMembers({ commit }, member) {
+    const response = await fetch(`/api/member/${member.memberId}`,{
+      method: "post",
+      body: JSON.stringify(member),
+      headers: { "Content-Type": "application/json" }
+    })
+
+    const members = await response.json();
+    if (!response.ok) {
+      console.error(response);
+      return;
+    }
+    commit("UPDATE_MEMBER", members);
+  },
 };

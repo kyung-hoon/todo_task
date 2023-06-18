@@ -17,5 +17,17 @@ export default {
         }
       }
     });
-  }
+  },
+  SET_MEMBER_ID(state, memberId) {
+    state.memberId = memberId;
+  },
+  UPDATE_IS_ADMIN(state, isAdmin) {
+    state.isAdmin = isAdmin;
+  },
+  SAVE_MEMBERS(state, members){
+    state.members=members;
+  },
+  UPDATE_MEMBER(state, member) {
+    state.tasks = [member, ...state.members.filter(({ memberId }) => memberId !== member.memberId)];
+  },
 };

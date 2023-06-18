@@ -128,15 +128,17 @@ export default {
         priority: "",
         status: false,
         dueDate: "",
-        comments: []
+        comments: [],
+        memberId: ""
       })
-    }
+    },
+    memberId: {type: String, required: false}
   },
   data: function() {
     return {
       priorities: ["low", "normal", "high"],
       date: null,
-      newTask: null
+      newTask: null,
     };
   },
   validations: {
@@ -198,10 +200,9 @@ export default {
         this.close();
         return;
       }
-
       const { year, month, day } = this.date;
       this.newTask.dueDate = new Date(year, month - 1, day);
-
+      this.newTask.memberId =this.memberId
       if (this.edit) {
         this.updateTask(this.newTask);
       } else {

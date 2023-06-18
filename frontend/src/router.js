@@ -4,6 +4,10 @@ import Tasks from "@/views/Tasks.vue";
 import NotFound from "@/views/NotFound.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register";
+import TaskList from "@/components/TaskList";
+import TaskModal from "@/components/Modal/TaskModal";
+import Members from "@/views/members";
+import members from "@/views/members";
 
 Vue.use(Router);
 
@@ -20,8 +24,8 @@ const router = new Router({
       }
     },
     {
-      path: "/task",
-      name: "task",
+      path: "/tasks",
+      name: "tasks",
       component: Tasks,
       meta: {
         title: "Tasks - pawaTask"
@@ -33,6 +37,14 @@ const router = new Router({
       component: Register,
       meta: {
         title: "Register - pawaTask"
+      }
+    },
+    {
+      path: '/member',
+      name: 'members',
+      component: members,
+      meta: {
+        title: "Members - pawaTask"
       }
     },
     {
