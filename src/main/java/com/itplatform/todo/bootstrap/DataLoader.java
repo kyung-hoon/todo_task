@@ -1,8 +1,7 @@
 package com.itplatform.todo.bootstrap;
 
-import com.itplatform.todo.domain.Comment;
-import com.itplatform.todo.domain.Priority;
-import com.itplatform.todo.domain.Task;
+import com.itplatform.todo.domain.*;
+import com.itplatform.todo.service.MemberService;
 import com.itplatform.todo.service.TaskService;
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
@@ -15,10 +14,12 @@ public class DataLoader implements CommandLineRunner {
 
     private Faker faker;
     private TaskService taskService;
+    private MemberService memberService;
     private Priority[] priorities;
 
-    public DataLoader(TaskService taskService) {
+    public DataLoader(TaskService taskService, MemberService memberService) {
         this.taskService = taskService;
+        this.memberService = memberService;
         faker = new Faker();
         priorities = new Priority[] {Priority.low, Priority.normal, Priority.high};
     }
@@ -54,5 +55,15 @@ public class DataLoader implements CommandLineRunner {
 
             taskService.save(task);
         }
+        loadInitialMember();
+    }
+
+    private void loadInitialMember(){
+        Member member = new Member();
+        member.setMemberId("admin");
+        member.setPassword("1234");
+        member.setRoleType(MemberRole.ADMIN);
+
+        memberService.save(member);
     }
 }

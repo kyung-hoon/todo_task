@@ -30,3 +30,6 @@ VALUES (3, 'Third', 2, '2019-09-12 19:00:17.000000'),
 INSERT IGNORE INTO comment
 VALUES (5, 'Fifth', 3, '2019-04-01 19:21:17.000000'),
        (6, 'Sixth', 3, '2019-07-04 13:59:17.000000');
+
+INSERT IGNORE INTO member
+VALUES (1, 'admin', '1234', 'Admin');

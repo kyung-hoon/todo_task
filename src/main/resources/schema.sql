@@ -17,3 +17,12 @@ CREATE TABLE IF NOT EXISTS comment
     date    DATETIME(6)      DEFAULT NULL,
     FOREIGN KEY (task_id) REFERENCES task (id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS member
+(
+    id   int auto_increment primary key,
+    member_id varchar(255) null,
+    password  varchar(255) null,
+    role_type ENUM ('ADMIN', 'NORMAL') DEFAULT null
+) ENGINE = innoDB;
