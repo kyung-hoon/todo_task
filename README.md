@@ -19,7 +19,7 @@ npm run serve
 
 # Access the app on http://localhost:8080/
 # PreRequisites:
-mysql should running on port 3306 before application runs and root password must be 1234
+mysql should be running on port 3306 before application runs and root password must be 1234
 ```
 
 ### Build
