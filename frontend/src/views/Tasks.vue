@@ -26,7 +26,7 @@
           >
             My Tasks
           </Button>
-          <Button class="my-tasks-button" @click.native.prevent="showAll">
+          <Button class="show-all-button" @click.native.prevent="showAll">
             Show All
           </Button>
           <Button
@@ -36,6 +36,9 @@
           >
             Manage
           </Button>
+          <Button class="share-task-button" @click.native.prevent="openShareModal">
+            Share My Task
+          </Button>
         </div>
       </header>
       <TaskList v-if="tasks" :tasks="tasks"></TaskList>
@@ -44,6 +47,11 @@
         <button class="link" @click="addTask">add a new task</button>
       </p>
     </main>
+    <ShareModal
+        v-if="showShareModal"
+        :shareLink="shareLink"
+        @close="closeShareModal"
+    />
   </div>
 </template>
 
@@ -53,19 +61,25 @@ import TaskList from "@/components/TaskList";
 import Button from "@/components/Button";
 import TaskModal from "@/components/Modal/TaskModal";
 import Members from "@/views/members";
+import ShareModal from "@/components/Modal/ShareModal";
 
 export default {
-  components: { Button, TaskList, TaskModal, Members },
+  components: { Button, TaskList, TaskModal, Members,ShareModal },
   data() {
     return {
       openModal: false,
       memberId: null,
+      showShareModal: false,
     };
   },
   computed: {
     ...mapState(["tasks"]),
     isAdmin() {
       return this.$store.state.isAdmin;
+    },
+    shareLink() {
+      const memberId = this.$route.query.memberId;
+      return `${window.location.origin}/share?memberId=${memberId}`;
     },
   },
   created() {
@@ -88,6 +102,12 @@ export default {
       // 관리 작업 실행
       this.$router.push('/member')
     },
+    openShareModal() {
+      this.showShareModal = true;
+    },
+    closeShareModal() {
+      this.showShareModal = false;
+    },
   },
 };
 </script>
@@ -100,6 +120,7 @@ export default {
   box-sizing: border-box;
   padding: 1.2rem;
 }
+
 .main {
   margin: 0 auto;
   background: $white;
@@ -110,11 +131,13 @@ export default {
     width: 600px;
   }
 }
+
 .title {
   margin: 0;
   font-size: 1.5rem;
-  line-height: 1px;
+  line-height: 1;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -125,18 +148,14 @@ export default {
 
 .button-group {
   display: flex;
+  align-items: center;
 
-  .my-tasks-button {
+  > * {
     margin-left: 1rem;
-  }
-
-  .manage-button {
-    margin-left: 1rem;
-    // 스타일을 추가적으로 지정해주세요.
   }
 }
 
 .link {
-  // 링크 스타일을 추가적으로 지정해주세요.
+  // link styles
 }
 </style>

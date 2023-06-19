@@ -8,6 +8,7 @@ import TaskList from "@/components/TaskList";
 import TaskModal from "@/components/Modal/TaskModal";
 import Members from "@/views/members";
 import members from "@/views/members";
+import ShareTasks from "@/views/ShareTasks";
 
 Vue.use(Router);
 
@@ -21,6 +22,14 @@ const router = new Router({
       component: Login,
       meta: {
         title: "Login - pawaTask"
+      }
+    },
+    {
+      path: "/share",
+      name: "share",
+      component: ShareTasks,
+      meta: {
+        title: "share tasks - pawaTask"
       }
     },
     {
