@@ -3,6 +3,7 @@
 <small>A simple todo list application that keeps track of your time.</small>
 ## How To
 - To access the application go to: http://localhost:8080/.
+-The account created by default is ID: admin / PW: 1234. This is the initial administrator account, and you can manage privileges for accounts created later.
 - For API interactions use: http://localhost:8080/api/tasks , http://localhost:8080/api/member, http://localhost:8080/api/login and http://localhost:8080/api/comments .
 - API Document is available in http://localhost:8080/swagger-ui/index.html#/
 - Database is automatically initialized and seeded. For production this needs to be disabled.
