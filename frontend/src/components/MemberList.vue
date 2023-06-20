@@ -71,7 +71,6 @@ export default {
 }
 
 .role {
-  /* Add your styles for role */
 }
 
 .buttons {

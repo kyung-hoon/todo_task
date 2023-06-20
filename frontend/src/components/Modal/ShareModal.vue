@@ -39,7 +39,7 @@ export default {
 
       setTimeout(() => {
         this.copied = false;
-      }, 3000);  // 3 seconds after copying, the message will disappear
+      }, 3000);
     },
     closeShareModal() {
       this.$emit("close");
@@ -121,7 +121,7 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s;
 
-&:hover {
+  &:hover {
    background-color: #999;
  }
 }

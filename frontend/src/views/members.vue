@@ -141,16 +141,13 @@ export default {
 }
 
 .back {
-  // Add spacing between "Save All" and "back" button
   margin-right: 1rem;
 }
 
 .save {
-  // Add spacing between "back" and "Save All" button
   margin-left: 1rem;
 }
 
 .link {
-  // Additional link styles
 }
 </style>

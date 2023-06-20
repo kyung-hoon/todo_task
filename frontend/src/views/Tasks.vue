@@ -99,7 +99,6 @@ export default {
       this.$store.dispatch("getTasks");
     },
     manageTasks() {
-      // 관리 작업 실행
       this.$router.push('/member')
     },
     openShareModal() {
@@ -156,6 +155,5 @@ export default {
 }
 
 .link {
-  // link styles
 }
 </style>

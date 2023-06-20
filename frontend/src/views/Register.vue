@@ -59,7 +59,7 @@ export default {
                 if (response.ok) {
                   this.isRegistered = true;
                   alert('회원가입 성공');
-                  this.$router.push({path: '/'}); // 회원가입 성공 시 로그인 페이지로 이동
+                  this.$router.push({path: '/'});
                 } else if (response.status ===403){
                   alert('이미 존재하는 ID 입니다.');
                 } else{
